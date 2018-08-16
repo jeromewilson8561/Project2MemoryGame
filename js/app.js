@@ -1,3 +1,6 @@
+//I FOLLOWED MY STRONG DESIRE HERE TO EXPRESS MY CREATIVE THOUGHTS TO BUILD A SLIGHTLY DIFFERENT MEMORY GAME. THIS CONCEPT IS BASED ON BRIGHT, YELLOW, SUNSHINE CIRCLES THAT PUSH THE USER'S MOOD TO HAPPY FEELINGS OF BRIGHT, WARM, FUN THOUGHTS AND EMOTIONS. I BELIEVE THAT THE USER'S EMOTIONS WILL THEN CREATE A DESIRE TO KEEP PLAYING THE "HAPPY YELLOW SUNSHINE CIRCLES GAME" OVER AND OVER AND OVER AGAIN LOL. I INTEND TO COMEBACK LATER TO ADD "WARM, HAPPY, SUNSHINE-RELATED" ICONS TO INCREASE THE USER'S HAPPY, EMOTIONAL FEELINGS!
+
+//MY RUBRIC TO BUILD THIS PROJECT!
 //WHAT ARE THE PROJECT'S FINAL OBJECTIVES ?
 //DETERMINE THE 'LOGIC STATEGIES BEST SUITED FOR THIS SPECIFIC PROJECT !
 //BREAK UP THE PROJECT INTO 'MANY SMALL BUILDABLE PARTS' !
@@ -7,32 +10,35 @@
 //GET AS MANY 'SMALL WINS' ASAP WITH MY 'SMALL BUILDABLE PARTS' !
 //WHICH CODE METHODS ARE MOST COMMONLY NEEDED FOR THIS PROJECT ?
 //WHERE IS THE BEST LOCATION TO PLACE EACH PIECE OF 'CODE LOGIC' ???
-//WHAT DEBUGGING METHODS ARE BEST USED FOR THIS PROJECT ?     
-    
-const cardsContainer = document.querySelector(".deck");       
+//WHAT DEBUGGING METHODS ARE BEST USED FOR THIS PROJECT ?
+
+//CREATE AN ARRAY TO HOLD THE ICONS.
+const icons = ["C", "C", "I", "I", "R", "R", "C", "C", "L", "L", "E", "E", "S", "S", "8", "8"]; 
+//PARENT CONTAINER TO HOLD THE CARDS.    
+const cardsContainer = document.querySelector(".deck"); 
+//CONTAINER TO EMPTY THE OPENEDCARDS ARRAY.
 let openedCards = [];
+//CONTAINER TO EMPTY THE MATCHEDCARDS ARRAY.
 let matchedCards = [];
 
-//CREATE AN ARRAY TO HOLD THE ICONS
-const icons = ["C", "C", "I", "I", "R", "R", "C", "C", "L", "L", "E", "E", "S", "S", "8", "8"];
+
     
-    
-    
-//BUILD CARD GAME, INVOKE CLICK EVENT, AND SHUFFLE ICONS FOR THE NEW GAME.   
+//INIT FUNCTION TO BUILD THE CARD GAME, INVOKE CLICK EVENT, AND SHUFFLE ICONS.   
 function init() {
-    
-    //LOOP THRU THE ICONS AND BUILD THE CARDS. BUILD THE PARENT CONTAINER AND APPEND THE CHILDREN.
     
     //SHUFFLE THE ICONS.
     shuffle(icons);
     
+    //LOOP THRU THE ICONS AND BUILD THE CARDS. BUILD THE PARENT CONTAINER.
     for(let i=0; i<icons.length; i++) {
         const card = document.createElement('li');
         card.classList.add('card');
         
+        //DISPLAY THE LETTERS AND NUMBER ICONS ON THE CARD.
+        card.innerHTML = icons[i];
         //'<li><i class="fa fa-star"><fa fa-star"></i></li>
-        card.innerHTML = icons[i];       
         
+        //APPEND THE CHILD CARDS TO THE 'DECK' PARENT CONTAINER. JAVASCRIPT LOGIC ADAPTED FROM: http://www.thatsoftwaredude.com/content/6417/how-to-code-blackjack-using-javascript .
         cardsContainer.appendChild(card);
 
         //INVOKE A CLICK EVENT FOR EACH CARD.
@@ -42,10 +48,11 @@ function init() {
         
         
         
-//SHUFFLE THE ICONS.
+//'SHUFFLE THE ICONS' FUNCTION.
+//LOGIC ADAPTED FROM: http://www.thatsoftwaredude.com/content/6417/how-to-code-blackjack-using-javascript .
 function shuffle(deck) {
     //EACH RE-SHUFFLE GET 3000 SHUFFLES OF THE ICONS.
-    //SHUFFLE THE ICONS OF RANDOM CARDS BETWEEN THE 2 'SHUFFLE' ARRAYS. 
+    //SHUFFLE THE ICONS OF RANDOM CARDS BETWEEN THE 2 'SHUFFLE CARDS' ARRAYS. 
 
     for(var i=0; i<3000; i++) {
         let currentCard = Math.floor((Math.random() * deck.length));
@@ -60,7 +67,8 @@ function shuffle(deck) {
     
     
 
-//THE BUTTON FOR THE 'GAME-RULES' INSTRUCTIONS.
+//THE JAVASCRIPT LOGIC FOR THE "GAME-RULE INSTRUCTIONS" BUTTON.
+//THIS BUTTON INSTRUCTS THE USER ON 'HOW-TO-PLAY' THE "HAPPY YELLOW SUNSHINE CIRCLES GAME". IT ALSO EXPLAINS THE MEANING OF THE "SKYBLUE SUNSHINE STAR" RATINGS. IT INCLUDES A TIMER TO 'TOGGLE OFF' THE GAME-RULE INSTRUCTIONS AFTER 12 SECONDS.
 function GameRulesBtn() {             
     document.getElementById("gameRules").style.display = "contents"; 
     setTimeout (function() {
@@ -70,7 +78,8 @@ function GameRulesBtn() {
     
     
         
-//THE CLICK EVENT LISTENER.
+//THE CLICK EVENT LISTENER, OPENED CARDS, AND MATCHED CARD FUNCTIONS.
+//MY JAVASCRIPT LOGIC IS ADAPTED FROM: YAHYA ELHARONY @ https://www.youtube.com/watch?v=G8J13lmApkQ&t=2689s . THE YOUNG MAN GAVE AN EXCELLENT PROJECT WALKTHROUGH. HE CLEARLY AND THROUGHLY EXPLAINED THE JAVASCRIPT LOGIC, LINE BY LINE, AND PATIENTLY ASKED FOR QUESTIONS. EXCELLENT TUTORIAL!
 function click(card) {
     
     //BUILD THE EVENT LISTENER FOR ALL CARD CLICKS.    
@@ -111,7 +120,7 @@ function compare(currentCard, previousCard) {
                 //CLEAR OPENEDCARDS ARRAY AFTER EACH MATCH!!!
                 openedCards = [];  
                 
-                //CONSISTENTLY CHECK IF 'GAME IS OVER'!
+                //CONSISTENTLY CHECK FOR THE END OF THE GAME!
                 isOver();
         
             }else{
@@ -130,19 +139,16 @@ function compare(currentCard, previousCard) {
         
         
         
-//CONSISTENTLY CHECK IF 'GAME IS OVER'.
+//CONSISTENTLY CHECK FOR THE END OF THE GAME!
 function isOver() {
     if(matchedCards.length === icons.length) {
-        alert("Game Over! You WIN with " +moves+ " moves.");
-        
-        //alert("You Win! ... Game Over! You WON with " +fa fa-star+ " stars" +moves+ " moves.");
-        //starsContainer.innerHTML
+        alert("Game Over! You WIN after making " +moves+ " moves.");
     }        
 }       
    
   
         
-//THE 'ADDMOVE' FUNCTION ADDS EACH MOVE TO THE COUNTER.
+//THE 'ADDMOVE' FUNCTION ADDS 1 MOVE TO THE COUNTER, AFTER MAKING 2 'CIRCLE CLICKS'. 
 const movesContainer = document.querySelector('.moves');
     let moves = 0;
     movesContainer.innerHTML = 0;
@@ -157,6 +163,7 @@ const movesContainer = document.querySelector('.moves');
         
         
 //THE 'STARS RATING SYSTEM' DETERMINES THE NUMBER OF 'STARS' EARNED.
+//MY JAVASCRIPT LOGIC IS ADAPTED FROM: YAHYA ELHARONY @ https://www.youtube.com/watch?v=G8J13lmApkQ&t=2689s .
 const starsContainer = document.querySelector('.stars');
 
 function rating() {
@@ -177,20 +184,21 @@ function rating() {
 }
         
         
-//THE 'RESTART BUTTON'("TRY AGAIN") PREPARES FOR A BRAND NEW GAME.
+//THE 'RESTART BUTTON'("PLAY AGAIN") HELPS TO PREPARE FOR A BRAND NEW GAME.
 const restartBtn = document.querySelector(".restart");
     
     restartBtn.addEventListener("click", function() {
-        //DELETE ALL CARDS.
+        //DELETE ALL THE CARDS.
         cardsContainer.innerHTML = "";
         
-        //CALL 'INIT' TO CREATE NEW CARDS.
+        //CALL 'INIT' TO RE-BUILD A NEW "HAPPY YELLOW SUNSHINE CIRCLES GAME".
         init();
         
-        //RESET OTHER PARTS OF THE CODE.
+        //EMPTY THESE 2 ARRAYS.
         matchedCards = [];
         openedCards = [];
         
+        //RE-SET THE MOVES AND STARS FUNCTIONS.
         moves = 0;
         movesContainer.innerHTML = moves;        
         starsContainer.innerHTML = ['<li><i class="fa fa-star"><fa fa-star"></i></li> <li><i class="fa fa-star"><fa fa-star"></i></li> <li><i class="fa fa-star"><fa fa-star"></i></li> <li><i class="fa fa-star"><fa fa-star"></i></li> <li><i class="fa fa-star"><fa fa-star"></i></li>'];
@@ -198,5 +206,5 @@ const restartBtn = document.querySelector(".restart");
         
         
         
-//INVOKE 'INIT' TO RE-BUILD A NEW GAME AND RE-SHUFFLE NEW CARDS.
+//CALL 'INIT' TO RE-BUILD A NEW GAME AND RE-SHUFFLE NEW CARDS.
 init();

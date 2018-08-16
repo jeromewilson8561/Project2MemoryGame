@@ -1,0 +1,161 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #fff url('../img/geometry2.png');
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: arial, Open Sans, sans-serif;
+    font-weight: 300;
+    color: #ff0;
+    background: #02b3e4;
+    border: 1px solid blue;
+    border-radius: 10px;
+}
+    
+header {
+    margin-top: -15px;
+    margin-bottom: -30px;
+    text-align: center;
+    font-family: arial;
+    color: #00f;
+}
+
+button {
+    color: blue;
+    text-align: center;
+    font-size: 16px;
+    background: yellow;
+    border: 1px dashed #00f;
+    cursor: grabbing;
+}
+/*
+ * Styles for the deck of cards
+ */
+
+.deck {
+    width: 660px;
+    min-height: 600px;
+    background: linear-gradient(160deg, #FF0 0%, #FF0 100%);
+    padding: 32px;
+    border-radius: 170px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #02b3e4; 
+    font-size: 0;
+    color: #ff0; 
+    border-radius: 50px; /*THE GAME'S PHYSICAL THEME IS CIRCLES*/
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    background: skyblue; 
+    cursor: default;
+}
+
+.deck .card.show {
+    font-size: 33px;
+    background: #00f;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #ff0;
+    font-size: 33px;
+    color: #00f;
+}
+    
+.deck .card.disabled {
+    pointer-events: none;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    text-align: center;
+    width: 545px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+    color: #02b3e4;
+}
+
+.score-panel .restart {
+    float: left;
+    cursor: grabbing;
+}
+
+h5 {
+    margin-bottom: 20px;
+}  
+
+#gameRules {
+    display: none;
+}    
+
+.movesStyle {
+    color:blue; 
+    background:#ff0; 
+    font-size:16px; 
+    border:1px solid blue;
+    border-radius: 10px;
+    padding-left:5px; 
+    padding-right:5px;
+}    
+
+.moves {
+    color: blue;
+    font-size: 16px;
+    margin-right: 5px;
+}
